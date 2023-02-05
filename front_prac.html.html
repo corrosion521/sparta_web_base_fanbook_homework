@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <!--1. 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+    <style>
+        /*1. 폰트 적용*/
+        * {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        /*2. 배경
+        position 옆에 %를 줘서 조정 가능.
+        */
+        .mytitle {
+            background-color: green;
+            height: 250px;
+            width: 100%;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2022%2F10%2FJvcki-wai-join-aomg-new-artist-info-ft.jpg?w=960&cbr=1&q=90&fit=max");
+            background-position: center 30%;
+            background-size: cover;
+
+            color: white;
+            /* !!! display: 내용물을 중간에 오게 해줌.. 그래서 내용물(background아님! 글자)가 중간에옴
+            이거랑 margin - auto랑 비슷해보이지만, 다름
+            margin은 여백을 주는 건데, auto는 현 페이지 크기에 맞춰서 여백을 조정하는 것임
+
+            =>  그니까 결국 display(중간에 위치) vs margin-auto(여백 조정) 인 것임
+
+            */
+            display: flex;
+            flex-direction: column; /*row*/
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .cheerup { /*3. 응원 남기기 부분*/
+            padding: 10px;
+            margin: 20px auto 0px auto; /*auto는 중간 자동 지정임*/
+
+            width: 80%;
+            max-width: 500px;
+
+            box-shadow: 0px 0px 3px 0px gray;
+
+        }
+
+        /*4. 자식셀렉터 : 그냥 button태그로 하지말고, 자식 셀렉터를 이용해서 하자...*/
+        .cheerup > button {
+            margin-top: 10px;
+        }
+
+
+        /*5. 카드(평가) 부분 참고로, 응원남기기 부분가 동일하게 지정하기 위해서 margin과 width를 당연히 같게 지정했다*/
+        .mycards {
+            margin: 20px auto 0px auto;
+
+            width: 80%;
+            max-width: 500px;
+        }
+
+        /*4. 자식셀렉터 : 클래스도 지정가능하다. */
+        .mycards > .card {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            alert('다 로딩됐다!')
+            // [!!!] 과제 부분
+            //ready jquery함수 안에, ajax를 넣어,
+            //ready시에 ajax를 실행 시켜 데이터를 가져올 수 있게 하였다.
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                data: {},
+                success: function (response) {
+                    let temp = response['temp']
+
+                    $('#temp').text(temp)
+                }
+            })
+        });
+
+
+    </script>
+</head>
+
+<body>
+<div class="mytitle">
+    <h1>재키와이 팬명록</h1>
+    <p>현재기온 : <span id="temp">00.0</span>도</p>
+
+</div>
+
+<div class="marg">
+    <div class="cheerup">
+        <div class="form-floating mb-3">
+            <input type="url" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">닉네임</label>
+
+        </div>
+
+
+        <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                  style="height: 100px"></textarea>
+            <label for="floatingTextarea2">응원댓글</label>
+        </div>
+        <div class="mybtn">
+            <button type="button" class="btn btn-dark">응원 남기기</button>
+
+        </div>
+    </div>
+    <div class="mycards">
+        <div class="card">
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>최고의 가수!</p>
+                    <footer class="blockquote-footer">정지오
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="card">
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>최고의 가수!</p>
+                    <footer class="blockquote-footer">정지오
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="card">
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>최고의 가수!</p>
+                    <footer class="blockquote-footer">정지오
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
