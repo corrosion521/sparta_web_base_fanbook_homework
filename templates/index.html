@@ -5,20 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!--og -->
+    <meta property="og:title" content="재키와이 팬명록"/>
+    <meta property="og:description" content="쓰잘 데 없는 댓글 달기"/>
+    <meta property="og:image" content="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2022%2F10%2FJvcki-wai-join-aomg-new-artist-info-ft.jpg?w=960&cbr=1&q=90&fit=max"/>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
     <title>재키와이 팬명록</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+          rel="stylesheet">
     <style>
         * {
             font-family: 'Noto Serif KR', serif;
         }
+
         .mypic {
             width: 100%;
             height: 300px;
@@ -60,11 +67,12 @@
         }
     </style>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             set_temp()
             show_comment()
         });
-        function set_temp(){
+
+        function set_temp() {
             $.ajax({
                 type: "GET",
                 url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
@@ -74,7 +82,8 @@
                 }
             })
         }
-        function save_comment(){
+
+        function save_comment() {
 
             let name = $('#name').val()
             let comment = $('#comment').val()
@@ -82,15 +91,18 @@
             $.ajax({
                 type: 'POST',
                 url: '/homework',
-                data: {name_give:name,
-                        comment_give:comment},
+                data: {
+                    name_give: name,
+                    comment_give: comment
+                },
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()//메시지 작성 후 바로 새로고침- 날씨, 코멘트리스트 새로고침
                 }
             })
         }
-        function show_comment(){
+
+        function show_comment() {
             $.ajax({
                 type: "GET",
                 url: "/homework",
@@ -121,23 +133,23 @@
     </script>
 </head>
 <body>
-    <div class="mypic">
-        <h1>재키와이 팬명록</h1>
-        <p>현재기온: <span id="temp">36</span>도</p>
+<div class="mypic">
+    <h1>재키와이 팬명록</h1>
+    <p>현재기온: <span id="temp">36</span>도</p>
+</div>
+<div class="mypost">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="name" placeholder="url">
+        <label for="floatingInput">닉네임</label>
     </div>
-    <div class="mypost">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="name" placeholder="url">
-            <label for="floatingInput">닉네임</label>
-        </div>
-        <div class="form-floating">
+    <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="comment"
-                style="height: 100px"></textarea>
-            <label for="floatingTextarea2">응원댓글</label>
-        </div>
-        <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
+                      style="height: 100px"></textarea>
+        <label for="floatingTextarea2">응원댓글</label>
     </div>
-    <div class="mycards" id="comment-list">
-    </div>
+    <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
+</div>
+<div class="mycards" id="comment-list">
+</div>
 </body>
 </html>
